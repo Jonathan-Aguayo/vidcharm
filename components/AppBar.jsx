@@ -23,10 +23,9 @@ const Search = styled('div')(({ theme }) => ({
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
   marginRight: theme.spacing(2),
-  marginLeft: theme.spacing(4),
+  marginLeft: theme.spacing(1),
   width: '100%',
   [theme.breakpoints.up('sm')]: {
-    marginLeft: '29%',
     width: 'auto',
   },
 }));
@@ -154,14 +153,12 @@ export default function PrimarySearchAppBar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
-          >
-            VidCharm
-          </Typography>
+          <Link
+          variant='h6'
+          href='/'
+          underline='none'
+          color='white'
+          >VidCharm</Link>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
