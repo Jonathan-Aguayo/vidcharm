@@ -13,9 +13,9 @@ export default function Home()
     //use effect will run on every page render and the page will be re-rendered when the src url changes
     React.useEffect( () => 
     {
-        if(!video)
-            return
-        getObject()        
+      if(!video)
+        return
+      getObject()        
     },[video]);
 
     function getObject()
