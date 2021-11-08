@@ -1,6 +1,25 @@
 import { Grid } from '@mui/material'
 import PrimarySearchAppBar from '../components/AppBar.jsx'
 import { UploadForm } from '../components/UploadForm.jsx'
+
+const mysql = require("mysql");
+
+const db = mysql.createConnection({
+    host: "rds-mysql-vidcharm.cww4xtjo4mzk.us-west-1.rds.amazonaws.com",
+    port: "3306",
+    user: "admin",
+    password: "cmpe172vidcharm",
+    database: "vidcharm",
+});
+
+db.connect((err) => {
+    if(err){
+        console.log(err.message);
+        return;
+    }
+    console.log("database connected.");
+});
+
 export default function Home() {
   return ( 
     <div>
