@@ -1382,6 +1382,13 @@
   "resolved" "https://registry.npmjs.org/@sideway/pinpoint/-/pinpoint-2.0.0.tgz"
   "version" "2.0.0"
 
+"@types/mysql@^2.15.6":
+  "integrity" "sha512-wSRg2QZv14CWcZXkgdvHbbV2ACufNy5EgI8mBBxnJIptchv7DBy/h53VMa2jDhyo0C9MO4iowE6z9vF8Ja1DkQ=="
+  "resolved" "https://registry.npmjs.org/@types/mysql/-/mysql-2.15.19.tgz"
+  "version" "2.15.19"
+  dependencies:
+    "@types/node" "*"
+
 "@types/node@*":
   "integrity" "sha512-8MLkBIYQMuhRBQzGN9875bYsOhPnf/0rgXGo66S2FemHkhbn9qtsz9ywV1iCG+vbjigE4WUNVvw37Dx+L0qsPg=="
   "resolved" "https://registry.npmjs.org/@types/node/-/node-16.11.0.tgz"
@@ -4262,6 +4269,15 @@
   "integrity" "sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw=="
   "resolved" "https://registry.npmjs.org/semver/-/semver-6.3.0.tgz"
   "version" "6.3.0"
+
+"serverless-mysql@^1.5.4":
+  "integrity" "sha512-q7hJh8NivO2g4CcZ7wy3KTctsFpqx/P4zrVJTwsJJoV9v9QouGv0IFLKXW0rkOqbHSQRvth/eTbf7noYBJzPiQ=="
+  "resolved" "https://registry.npmjs.org/serverless-mysql/-/serverless-mysql-1.5.4.tgz"
+  "version" "1.5.4"
+  dependencies:
+    "mysql" "^2.18.1"
+  optionalDependencies:
+    "@types/mysql" "^2.15.6"
 
 "setimmediate@^1.0.4", "setimmediate@~1.0.4":
   "integrity" "sha1-KQy7Iy4waULX1+qbg3Mqt4VvgoU="
