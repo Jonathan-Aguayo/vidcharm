@@ -44,7 +44,7 @@ export default function Home()
         {/*This container item will span the entire width of the page*/}
         <Grid item xs={10}>
           {/*eventually, we want to get the poster and video source from the url, this is just an example */}
-          <video width='100%' height='550' autoPlay controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/bbb-poster.jpg' style={{marginTop:'10px'}} key={state.url}> 
+          <video width='100%' height='550' autoPlay controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/WIN_20210929_11_19_32_Pro (2).jpg' style={{marginTop:'10px'}} key={state.url}> 
             <source src= {state.url}/>
           </video>
         </Grid>

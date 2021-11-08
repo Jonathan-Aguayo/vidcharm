@@ -11,7 +11,7 @@ export default function Home() {
         {/*This container item will span the entire width of the page*/}
         <Grid item xs={10}>
           <p>Home page</p>
-          <p>Link to <a href='/watch/bbb_sunflower_native_60fps_stereo_abl.mp4'>video</a></p>
+          <p>Link to <a href='/watch/WIN_20210128_13_20_53_Pro.mp4'>video</a></p>
         </Grid>
       </Grid>
     </div>
