@@ -1,5 +1,6 @@
 import { Grid } from '@mui/material'
 import PrimarySearchAppBar from '../components/AppBar.jsx'
+import { UploadForm } from '../components/UploadForm.jsx'
 export default function Home() {
   return ( 
     <div>
