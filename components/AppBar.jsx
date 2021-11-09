@@ -13,7 +13,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Avatar } from '@mui/material';
 import {Link} from '@mui/material'
-import { Button } from '@mui/material';
+import { signIn, signOut, useSession } from 'next-auth/client';
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -57,6 +58,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function PrimarySearchAppBar(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [session, loading] = useSession();
+
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -97,6 +100,13 @@ export default function PrimarySearchAppBar(props) {
     >
       <MenuItem onClick={handleMenuClose} component= {Link} href='/profile'>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose} component= {Link} href='/account'>My Account</MenuItem>
+      {
+        session?
+        <MenuItem onClick={handleMenuClose} component= {Link} href='/api/auth/signout'>Sign out </MenuItem>
+        :
+        <MenuItem onClick={handleMenuClose} component= {Link} href='/api/auth/signin'>Sign in </MenuItem> 
+      }
+
     </Menu>
   );
 
