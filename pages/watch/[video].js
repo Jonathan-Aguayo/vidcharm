@@ -34,17 +34,57 @@ export default function Home()
 
   return ( 
     <div>
+ <title> VidCharm Watch Page</title>
       <PrimarySearchAppBar name='user'/>
-      {/*The grid container is a material UI element that helps you organize the web page and resize everything dynamically*/}
-      <Grid container justifyContent='space-around'>
-        {/*This container item will span the entire width of the page*/}
-        <Grid item xs={10}>
-          {/*eventually, we want to get the poster and video source from the url, this is just an example */}
-          <video width='100%' height='550' autoPlay controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/bbb-poster.jpg' style={{marginTop:'10px'}} key={state.url}> 
-            <source src= {state.url}/>
-          </video>
-        </Grid>
-      </Grid>
+      <Grid container spacing={2} style={{}}>
+      <Grid direction={'row'} item xs={10} style={{}}>
+      <video width='100%' height='550' autoPlay controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/bbb-poster.jpg' style={{marginTop:'10px'}} key={state.url}> 
+                  <source src= {state.url}/>
+                 </video>
+</Grid>
+<Grid item xs={2} style={{}}>
+      <h1> Comments </h1>
+      <Grid container style={{}}>
+      <Grid item xs={12} style={{}}>
+      <h1> comment retrieved from database </h1>
+</Grid>
+<Grid item xs={12} style={{}}>
+      <h1> comment retrieved from database </h1>
+</Grid>
+<Grid item xs={12} style={{}}>
+      <h1> comment retrieved from database </h1>
+</Grid>
+</Grid>
+
+</Grid>
+
+<Grid item xs={10} style={{}}>
+  <h1>Recommendations</h1>
+</Grid>
+
+<Grid container spacing={2} style={{ }}>
+
+<Grid item xs={4}>
+<video width='50%' height='275' autoPlay controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/bbb-poster.jpg' style={{marginTop:'10px'}} key={state.url}> 
+                  <source src= {state.url}/>
+                 </video>
+</Grid>
+<Grid item xs={4}>
+<video width='50%' height='275' autoPlay controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/bbb-poster.jpg' style={{marginTop:'10px'}} key={state.url}> 
+                  <source src= {state.url}/>
+                 </video>
+</Grid>
+<Grid item xs={4}>
+<video width='50%' height='275' autoPlay controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/bbb-poster.jpg' style={{marginTop:'10px'}} key={state.url}> 
+                  <source src= {state.url}/>
+                 </video>
+</Grid>
+
+
+</Grid>
+
+</Grid>
     </div>
+
   )
 }
