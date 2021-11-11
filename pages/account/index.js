@@ -30,7 +30,6 @@ export default function AccountPage(props)
     }
     return (
         <div>
-        <PrimarySearchAppBar name='user' />
         <Grid container spacing={4} alignItems='center' justifyContent='center' 
         style={{marginTop:'10px'}}>
             
@@ -44,7 +43,7 @@ export default function AccountPage(props)
                     height='auto'
                     src={video}
                     controls
-                    style={{objectFit:'cover', maxHeight:'350px'}}
+                    style={{objectFit:'contain', maxHeight:'350px'}}
                     >
                 
                     </CardMedia>
@@ -62,7 +61,7 @@ export default function AccountPage(props)
                     component='img'
                     height='auto'                    
                     src={poster}
-                    style={{objectFit:'cover', maxHeight:'350px'}}>
+                    style={{objectFit:'contain', maxHeight:'350px'}}>
                         
                     </CardMedia>
                     <CardActions>

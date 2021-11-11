@@ -41,10 +41,11 @@ export default function Home()
  <title> VidCharm Watch Page</title>
       <PrimarySearchAppBar name='user'/>
       <Grid container spacing={2} style={{}}>
-      <Grid direction={'row'} item xs={10} style={{}}>
+      <Grid container direction={'row'} item xs={10} style={{}}>
       <video width='100%' height='550' autoPlay controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/bbb-poster.jpg' style={{marginTop:'10px'}} key={state.url}> 
                   <source src= {state.url}/>
                  </video>
+                 
 </Grid>
 <Grid item xs={2} style={{}}>
       <h1> Comments </h1>

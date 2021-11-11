@@ -132,7 +132,7 @@ export default function PrimarySearchAppBar(props) {
         noWrap
         component="div"
         style={{padding:'12px'}}>
-            {props.name}
+            {session ? session.user.name.split(' ')[0] : 'user'}
         </Typography>
         <IconButton
           size="large"
@@ -142,8 +142,8 @@ export default function PrimarySearchAppBar(props) {
           color="inherit"
         >
             <Avatar
-            alt = {props.name}
-            src = {props.pictureSource}/>
+            alt = {session?.user.name}
+            src = {session?.user.image}/>
         </IconButton>
 
       </MenuItem>
@@ -184,7 +184,7 @@ export default function PrimarySearchAppBar(props) {
             variant='h6'
             component="div"
             style={{padding:'15px'}}>
-                {props.name}
+            {session ? session.user.name.split(' ')[0] : 'user'}
             </Typography>
             <IconButton
               size="large"
@@ -197,7 +197,7 @@ export default function PrimarySearchAppBar(props) {
             >
               <Avatar
               alt = {props.name}
-              src = {props.pictureSource}/>
+              src = {session?.user.image}/>
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>

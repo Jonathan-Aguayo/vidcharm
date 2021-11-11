@@ -10,8 +10,6 @@ export default function Home() {
 
   return ( 
     <div>
-
-      <PrimarySearchAppBar name={session?.user.name.split(' ')[0]} pictureSource={session?.user.image}/>
       {/*The grid container is a material UI element that helps you organize the web page and resize everything dynamically*/}
       <Grid container justifyContent='space-around'>
         {/*This container item will span the entire width of the page*/}
