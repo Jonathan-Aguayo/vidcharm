@@ -1,6 +1,6 @@
 export default function index()
 {
     return (
-        <p>hi</p>
+        <p>he</p>
     )
 }

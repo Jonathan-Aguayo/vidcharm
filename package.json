@@ -18,13 +18,13 @@
     "aws-sdk": "^2.1019.0",
     "fs-extra": "^10.0.0",
     "joi": "^17.4.2",
-    "mongoose": "^6.0.12",
+    "mysql": "^2.18.1",
     "next": "11.1.2",
+    "next-auth": "^3.29.0",
     "node-fetch": "^3.0.0",
-    "passport": "^0.5.0",
-    "passport-google-oauth20": "^2.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "serverless-mysql": "^1.5.4",
     "styled-components": "^5.3.1",
     "whatwg-fetch": "^3.6.2"
   }

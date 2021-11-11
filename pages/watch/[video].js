@@ -6,30 +6,34 @@ import PrimarySearchAppBar from '/components/AppBar.jsx'
 export default function Home() 
 {
     const router = useRouter() 
+    //Video will just be whatever string is after the /watch in the url
     const {video} = router.query
     //Initialize the urls to empty string to avoid errors
     const [state, setState] = React.useState({url: ''})
 
-    //use effect will run on every page render and the page will be re-rendered when the src url changes
+    //use effect will only run when the value of video changes
     React.useEffect( () => 
     {
-        if(!video)
-            return
-        getObject()        
+      //Upon first render, video will be null but it will eventuall be equal to the string after/watch/
+      if(!video)
+        return
+      getObject()        
     },[video]);
 
+    //Function to attempt to retrieve the object from s3 bucket through our rest api
     function getObject()
     {
-        fetch(`/api/getVideo/${video}`).then(res =>
+      //Fetch is the library I used to make api calls to our backend
+      fetch(`/api/getVideo/${video}`).then(res =>
+      {
+        if(res.ok)
         {
-            if(res.ok)
-            {
-                res.json().then(data =>
-                {
-                    setState({url: data.videourl})
-                })
-            }
-        })
+          res.json().then(data =>
+          {
+            setState({url: data.videourl})
+          })
+        }
+      })
     }
 
   return ( 
