@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  uId String @id 
+  firstName String 
+  lastName String
+  email String @unique
+  profilePicUrl String
+  comments Comment[]
+  videos Video[]
+  playlists Playlist[]
+  channel Channel?
+}
+
+model Comment {
+  comId String @id @default(cuid())
+  body String
+  datePosted DateTime @default(now())
+  like Int
+  dislike Int
+  author User @relation(fields: [uId], references: [uId])
+  uId String
+  source Video @relation(fields: [vId], references: [vId])
+  vId String
+}
+
+model Video{
+  vId String @id @default(cuid())
+  title String
+  vidUrl String @unique
+  datePosted DateTime @default(now())
+  views Int
+  like Int
+  dislike Int
+  comments Comment[]
+  author User @relation(fields: [uId], references: [uId])
+  uId String
+  source Channel @relation(fields: [chanId], references: [chanId])
+  chanId String
+  playlists include[]
+}
+
+model Channel{
+  chanId String @id @default(cuid())
+  name String @unique
+  createDate DateTime @default(now())
+  profilePicUrl String
+  videos Video[]
+  playlists Playlist[]
+  auth User @relation(fields: [uId], references: [uId])
+  uId String
+}
+
+model Playlist{
+  pId String @id @default(cuid())
+  name String
+  listUrl String @unique
+  createDate DateTime @default(now())
+  author User @relation(fields: [uId], references: [uId])
+  uId String
+  source Channel @relation(fields: [chanId], references: [chanId])
+  chanId String
+  videos include[]
+}
+
+model include{
+  play Playlist @relation(fields:[pId], references:[pId])
+  pId String @id
+  vid Video @relation(fields: [vId], references: [vId])
+  vId String 
+}
