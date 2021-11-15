@@ -12,8 +12,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Avatar } from '@mui/material';
-import {Link} from '@mui/material'
-import { signIn, signOut, useSession } from 'next-auth/client';
+import {Link} from '@mui/material';
+import { useSession, signIn, signOut } from "next-auth/client"
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -58,7 +58,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function PrimarySearchAppBar(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const [session, loading] = useSession();
+  const [session, loading] = useSession()
 
 
   const isMenuOpen = Boolean(anchorEl);
@@ -98,11 +98,13 @@ export default function PrimarySearchAppBar(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose} component= {Link} href='/profile'>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose} component= {Link} href='/account'>My Account</MenuItem>
       {
         session?
+        <> 
+        <MenuItem onClick={handleMenuClose} component= {Link} href='/profile'>Profile</MenuItem>
+        <MenuItem onClick={handleMenuClose} component= {Link} href='/account'>My Account</MenuItem>
         <MenuItem onClick={handleMenuClose} component= {Link} href='/api/auth/signout'>Sign out </MenuItem>
+        </>
         :
         <MenuItem onClick={handleMenuClose} component= {Link} href='/api/auth/signin'>Sign in </MenuItem> 
       }

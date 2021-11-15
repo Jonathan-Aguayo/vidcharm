@@ -1,13 +1,8 @@
 import { Grid } from '@mui/material'
-import PrimarySearchAppBar from '../components/AppBar.jsx'
-import { UploadForm } from '../components/UploadForm.jsx'
-import { Button } from '@mui/material'
-import { signIn, signOut, useSession } from 'next-auth/client';
-import { Link } from '@mui/material';
+import { useSession } from 'next-auth/client';
 export default function Home() {
 
-  const [session, loading] = useSession();
-
+  const { data: session } = useSession()
   return ( 
     <div>
       {/*The grid container is a material UI element that helps you organize the web page and resize everything dynamically*/}

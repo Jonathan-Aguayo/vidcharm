@@ -39,7 +39,6 @@ export default function Home()
   return ( 
     <div>
  <title> VidCharm Watch Page</title>
-      <PrimarySearchAppBar name='user'/>
       <Grid container spacing={2} style={{}}>
       <Grid container direction={'row'} item xs={10} style={{}}>
       <video width='100%' height='550' autoPlay controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/bbb-poster.jpg' style={{marginTop:'10px'}} key={state.url}> 

@@ -1,15 +1,13 @@
-import { Provider } from 'next-auth/client';
-import PrimarySearchAppBar from '../components/AppBar.jsx'
+// pages/_app.js
 
-const App = ({ Component, pageProps }) => {
-const { session } = pageProps;
+import PrimarySearchAppBar from '../components/AppBar'
+import { Provider } from "next-auth/client"
 
+export default function App({ Component, pageProps }) {
   return (
-    <Provider session={session}>
-      <PrimarySearchAppBar />
+    <Provider session={pageProps.session}>
+      <PrimarySearchAppBar/>
       <Component {...pageProps} />
     </Provider>
-  );
-};
-
-export default App;
+  )
+}
