@@ -7,8 +7,11 @@ export function UploadForm(props)
 {
 
     return (
-        <Grid container direction='column' 
-        alignItems='stretch' spacing={2}>
+        <Grid 
+        container 
+        direction='column' 
+        alignItems='stretch' 
+        spacing={2}>
             <Grid item xs={12}>
                 <Typography>Video Title</Typography>
                 <TextField style={{width:'100%'}}/>

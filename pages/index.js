@@ -1,5 +1,6 @@
 import { Grid } from '@mui/material'
 import { useSession } from 'next-auth/client';
+import Link from 'next/link';
 export default function Home() {
 
   const { data: session } = useSession()
@@ -10,7 +11,7 @@ export default function Home() {
         {/*This container item will span the entire width of the page*/}
         <Grid item xs={10}>
           <p>Home page</p>
-          <p>Link to <a href='/watch/WIN_20210128_13_20_53_Pro.mp4'>video</a></p>
+          <p>Link to <Link href='/watch/WIN_20210128_13_20_53_Pro.mp4'><a >video</a></Link></p>
         </Grid>
       </Grid>
     </div>

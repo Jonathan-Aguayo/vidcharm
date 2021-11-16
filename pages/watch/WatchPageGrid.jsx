@@ -141,39 +141,45 @@ comment: <span> {props.comment.body}</span>
 </Grid>
 
 <Grid container spacing={2} style={{}}>
+
       <div class="recommendationCSS" style={recommendationCSS}>
                   <div class= "recommendationcontainer"style={recommendationcontainer}>
                   <div class = "recVideos" style={{recVideos}}>
                   <video style={{recVideos}} width='100%' height='275' controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/WIN_20210929_11_19_32_Pro (2).jpg' style={{ vid}}key={state.url}> 
+
                   <source src= {state.url}/>    </video>
                         </div>
                   </div>
-                  <div class= "recommendationcontainer"style={recommendationcontainer}>
-                  <div class = "recVideos" style={{recVideos}}>
+                  <div className= "recommendationcontainer"style={recommendationcontainer}>
+                  <div className = "recVideos" style={{recVideos}}>
                   <video width='100%' height='275' controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/bbb-poster.jpg' key={state.url}> 
                   <source src= {state.url}/>    </video>
                         </div>
                   </div>
+
                   <div class= "recommendationcontainer"style={recommendationcontainer}>
                   <div class = "recVideos">
                   <video width='100%' height='275' controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/WIN_20210929_11_19_32_Pro (2).jpg'  key={state.url}> 
+                
                   <source src= {state.url}/>    </video>
                         </div>
                   </div>
-                  <div class= "recommendationcontainer"style={recommendationcontainer}>
-                  <div class = "recVideos">
+                  <div className= "recommendationcontainer"style={recommendationcontainer}>
+                  <div className = "recVideos">
                   <video width='100%' height='275' controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/bbb-poster.jpg'  key={state.url}> 
                   <source src= {state.url}/>    </video>
                         </div>
                   </div>
+
                   <div class= "recommendationcontainer"style={recommendationcontainer}>
                   <div class = "recVideos">
                   <video width='100%' height='275' controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/WIN_20210929_11_19_32_Pro (2).jpg' key={state.url}> 
+               
                   <source src= {state.url}/>    </video>
                         </div>
                   </div>
-                  <div class= "recommendationcontainer"style={recommendationcontainer}>
-                  <div class = "recVideos">
+                  <div className= "recommendationcontainer"style={recommendationcontainer}>
+                  <div className = "recVideos">
                   <video width='100%' height='275' controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/bbb-poster.jpg'  key={state.url}> 
                   <source src= {state.url}/>    </video>
                         </div>
