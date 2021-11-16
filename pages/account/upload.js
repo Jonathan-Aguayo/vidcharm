@@ -17,13 +17,18 @@ import { TextField } from '@mui/material';
 const S3_BUCKET = process.env.AWS_BUCKET_NAME
 const REGION = process.env.AWS_BUCKET_REGION
 AWS.config.update({
-    accessKeyId: 'AKIAZY7Q4E4UIE5OJR5O' ,
-    secretAccessKey: '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'
+    region: REGION,
+    apiVersion: 'latest',         
+    credentials: {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID ,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+    }
+
 })
 
 const myBucket = new AWS.S3({
-    params: {Bucket:'vidcharm-bucket-1'},
-    region: 'us-west-1',
+    params: {Bucket:S3_BUCKET},
+    region: REGION,
 })
 export default function AccountPage(props)
 {
@@ -85,6 +90,11 @@ export default function AccountPage(props)
     const handleTitleUpdate = (event) =>
     {
         setTitle(event.target.value);
+        console.log(process.env.AWS_BUCKET_REGION);
+        console.log(process.env.AWS_BUCKET_NAME);
+        console.log(process.env.AWS_ACCESS_KEY_ID);
+        console.log(process.env.AWS_SECRET_ACCESS_KEY);
+        console.log(process.env.AWS_BUCKET_REGION);
     }
     return (
         
