@@ -123,7 +123,7 @@ export default function WatchPageGrid(props) {
 <button type='submit' style={{marginLeft: '20px'}}>Comment</button>
 </Grid>
                         <Grid item xs={12} style={{ "border-bottom": '1px solid gray'}}>
-comment: <span> {props.comment.body}</span>
+comment: <span> {props.comment}</span>
 {/* 
      {comments.map((c, i: number) => (
             <div className="mb-3" key={i}>
