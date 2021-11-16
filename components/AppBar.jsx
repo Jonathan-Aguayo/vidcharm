@@ -12,7 +12,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Avatar } from '@mui/material';
-import {Link} from '@mui/material';
+import Link from 'next/link';
 import { useSession, signIn, signOut } from "next-auth/client"
 
 
@@ -68,11 +68,11 @@ export default function PrimarySearchAppBar(props) {
   {
     if(session)
     {
-      return [ <MenuItem key={'profileMenuButton'} onClick={handleMenuClose} component= {Link} href='/profile'>Profile</MenuItem>,
-        <MenuItem key={'AccountMenuButton'} onClick={handleMenuClose} component= {Link} href='/account'>My Account</MenuItem>,
-        <MenuItem key={'SignOutMenuButton'} onClick={handleMenuClose} component= {Link} href='/api/auth/signout'>Sign out </MenuItem>]
+      return [ <MenuItem key={'profileMenuButton'} onClick={handleMenuClose} > <Link href='/profile' ><a style={{textDecoration: 'none', color:'black'}}>Profile</a></Link> </MenuItem>,
+        <MenuItem key={'AccountMenuButton'} onClick={handleMenuClose}> <Link href='/account/upload' ><a style={{textDecoration: 'none', color:'black'}}>My account</a></Link> </MenuItem>,
+        <MenuItem key={'SignOutMenuButton'} onClick={handleMenuClose} > <Link href='/api/auth/signout'><a style={{textDecoration: 'none', color:'black'}}>Sign out</a></Link> </MenuItem>]
     }
-    return [<MenuItem key={'SignInMenuButton'} onClick={handleMenuClose} component= {Link} href='/api/auth/signin'>Sign in </MenuItem> ]
+    return [<MenuItem key={'SignInMenuButton'} onClick={handleMenuClose}> <Link href='/api/auth/signin' ><a style={{textDecoration: 'none', color:'black'}}>Sign in</a></Link> </MenuItem> ]
   }
 
   const handleProfileMenuOpen = (event) => {
@@ -84,6 +84,7 @@ export default function PrimarySearchAppBar(props) {
   };
 
   const handleMenuClose = () => {
+    console.log(session);
     setAnchorEl(null);
     handleMobileMenuClose();
   };
@@ -157,20 +158,11 @@ export default function PrimarySearchAppBar(props) {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" style={{backgroundColor:'#82959e'}}>
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
           <Link
           variant='h6'
           href='/'
-          underline='none'
           color='white'
+          style={{textDecoration: 'none', color:'black'}}
           >VidCharm</Link>
           <Search>
             <SearchIconWrapper>
