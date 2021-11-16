@@ -64,6 +64,17 @@ export default function PrimarySearchAppBar(props) {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+  const handleMenuChildren = () =>
+  {
+    if(session)
+    {
+      return [ <MenuItem key={'profileMenuButton'} onClick={handleMenuClose} component= {Link} href='/profile'>Profile</MenuItem>,
+        <MenuItem key={'AccountMenuButton'} onClick={handleMenuClose} component= {Link} href='/account'>My Account</MenuItem>,
+        <MenuItem key={'SignOutMenuButton'} onClick={handleMenuClose} component= {Link} href='/api/auth/signout'>Sign out </MenuItem>]
+    }
+    return [<MenuItem key={'SignInMenuButton'} onClick={handleMenuClose} component= {Link} href='/api/auth/signin'>Sign in </MenuItem> ]
+  }
+
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -97,18 +108,8 @@ export default function PrimarySearchAppBar(props) {
       }}
       open={isMenuOpen}
       onClose={handleMenuClose}
+      children={handleMenuChildren()}
     >
-      {
-        session?
-        <> 
-        <MenuItem onClick={handleMenuClose} component= {Link} href='/profile'>Profile</MenuItem>
-        <MenuItem onClick={handleMenuClose} component= {Link} href='/account'>My Account</MenuItem>
-        <MenuItem onClick={handleMenuClose} component= {Link} href='/api/auth/signout'>Sign out </MenuItem>
-        </>
-        :
-        <MenuItem onClick={handleMenuClose} component= {Link} href='/api/auth/signin'>Sign in </MenuItem> 
-      }
-
     </Menu>
   );
 

@@ -96,39 +96,39 @@ export default function WatchPageGrid(props) {
 </Grid>
 
 <Grid container spacing={2} style={{}}>
-      <div class="recommendationCSS" style={recommendationCSS}>
-                  <div class= "recommendationcontainer"style={recommendationcontainer}>
-                  <div class = "recVideos" style={{recVideos}}>
+      <div className="recommendationCSS" style={recommendationCSS}>
+                  <div className= "recommendationcontainer"style={recommendationcontainer}>
+                  <div className = "recVideos" style={{recVideos}}>
                   <video width='100%' height='275' controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/bbb-poster.jpg' style={{ vid}}key={state.url}> 
                   <source src= {state.url}/>    </video>
                         </div>
                   </div>
-                  <div class= "recommendationcontainer"style={recommendationcontainer}>
-                  <div class = "recVideos" style={{recVideos}}>
+                  <div className= "recommendationcontainer"style={recommendationcontainer}>
+                  <div className = "recVideos" style={{recVideos}}>
                   <video width='100%' height='275' controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/bbb-poster.jpg' key={state.url}> 
                   <source src= {state.url}/>    </video>
                         </div>
                   </div>
-                  <div class= "recommendationcontainer"style={recommendationcontainer}>
-                  <div class = "recVideos">
+                  <div className= "recommendationcontainer"style={recommendationcontainer}>
+                  <div className = "recVideos">
                   <video width='100%' height='275' controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/bbb-poster.jpg'  key={state.url}> 
                   <source src= {state.url}/>    </video>
                         </div>
                   </div>
-                  <div class= "recommendationcontainer"style={recommendationcontainer}>
-                  <div class = "recVideos">
+                  <div className= "recommendationcontainer"style={recommendationcontainer}>
+                  <div className = "recVideos">
                   <video width='100%' height='275' controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/bbb-poster.jpg'  key={state.url}> 
                   <source src= {state.url}/>    </video>
                         </div>
                   </div>
-                  <div class= "recommendationcontainer"style={recommendationcontainer}>
-                  <div class = "recVideos">
+                  <div className= "recommendationcontainer"style={recommendationcontainer}>
+                  <div className = "recVideos">
                   <video width='100%' height='275' controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/bbb-poster.jpg' key={state.url}> 
                   <source src= {state.url}/>    </video>
                         </div>
                   </div>
-                  <div class= "recommendationcontainer"style={recommendationcontainer}>
-                  <div class = "recVideos">
+                  <div className= "recommendationcontainer"style={recommendationcontainer}>
+                  <div className = "recVideos">
                   <video width='100%' height='275' controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/bbb-poster.jpg'  key={state.url}> 
                   <source src= {state.url}/>    </video>
                         </div>
