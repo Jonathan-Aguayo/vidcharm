@@ -1,6 +1,5 @@
 import { Grid } from '@mui/material'
 import { useRouter } from 'next/router'
-require('dotenv').config();
 import React from 'react'
 import PrimarySearchAppBar from '/components/AppBar.jsx'
 import WatchPageGrid from './WatchPageGrid'
