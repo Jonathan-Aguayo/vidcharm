@@ -2,24 +2,8 @@ import { Grid } from '@mui/material'
 import { useSession } from 'next-auth/client';
 import Vid from '../components/Vid';
 import VidList from '../components/VidList';
-import AWS from 'aws-sdk'
 import { useRouter } from 'next/router'
 
-const S3_BUCKET = process.env.AWS_BUCKET_NAME
-const REGION = process.env.AWS_BUCKET_REGION
-AWS.config.update({
-    region: REGION,
-    apiVersion: 'latest',         
-    credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID ,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-    }
-
-})
-const myBucket = new AWS.S3({
-  params: {Bucket:S3_BUCKET},
-  region: REGION,
-})
 export default function Home() {
 
   const { data: session } = useSession()

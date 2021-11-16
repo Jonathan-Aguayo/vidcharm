@@ -1,6 +1,5 @@
 import {CardHeader, Grid} from '@mui/material'
 import React from 'react'
-import AWS from 'aws-sdk'
 import {Card} from '@mui/material'
 import { CardMedia } from '@mui/material'
 import { CardActions } from '@mui/material'
@@ -14,22 +13,6 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { TextField } from '@mui/material';
 
-const S3_BUCKET = process.env.AWS_BUCKET_NAME
-const REGION = process.env.AWS_BUCKET_REGION
-AWS.config.update({
-    region: REGION,
-    apiVersion: 'latest',         
-    credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID ,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-    }
-
-})
-
-const myBucket = new AWS.S3({
-    params: {Bucket:S3_BUCKET},
-    region: REGION,
-})
 export default function AccountPage(props)
 {
     const [video, setVideo] = React.useState();
@@ -70,31 +53,25 @@ export default function AccountPage(props)
     
     const uploadFiles = (file, name, stateUpdater) => 
     {
-        const params = 
-        {
-            Body: file,
-            Bucket: 'vidcharm-bucket-1',
-            Key: name
-        }
-
-
-        myBucket.putObject(params)
-        .on('httpUploadProgress', (evt) => {
-            stateUpdater(Math.round((evt.loaded / evt.total) * 100))
+        const data = new FormData()
+        data.append('file', file);
+        data.append('title', name);
+        fetch('/api/videos', {
+            method: 'POST',
+            body:data,
         })
-        .send((err) => {
-            if (err) console.log(err)
+        .then(status =>
+        {
+            if(status.ok)
+            {
+                status.json().then(data => console.log(data))
+            }
         })
     }
 
     const handleTitleUpdate = (event) =>
     {
         setTitle(event.target.value);
-        console.log(process.env.AWS_BUCKET_REGION);
-        console.log(process.env.AWS_BUCKET_NAME);
-        console.log(process.env.AWS_ACCESS_KEY_ID);
-        console.log(process.env.AWS_SECRET_ACCESS_KEY);
-        console.log(process.env.AWS_BUCKET_REGION);
     }
     return (
         
@@ -137,7 +114,6 @@ export default function AccountPage(props)
         >
         <BottomNavigationAction label="Videos"  value='videos'/>
         <BottomNavigationAction label="Upload" value='upload' />
-        <BottomNavigationAction label="Playlists" value = 'playlists' />
         </BottomNavigation>
         <Grid container spacing={4} alignItems='center' justifyContent='center' 
         style={{marginTop:'10px'}}>
@@ -202,7 +178,7 @@ export default function AccountPage(props)
                 style={{color:'black', borderColor:'black'}}
                 variant='outlined'
                 type='submit'
-                onClick = {() => {uploadFiles(video, `jonathan/${title}`, setVideoProgress);uploadFiles(poster, `jonathan/${title}-poster`, setPosterProgress); setOpen(true);}}
+                onClick = {() => {uploadFiles( video, `jonathan/${title}.mp4`, setVideoProgress);uploadFiles(poster, `jonathan/${title}-poster.jpg`, setPosterProgress); setOpen(true);}}
                 disabled={poster? false:true}
                 >
                     Submit

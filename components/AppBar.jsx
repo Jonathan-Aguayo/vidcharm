@@ -159,11 +159,8 @@ export default function PrimarySearchAppBar(props) {
       <AppBar position="static" style={{backgroundColor:'#82959e'}}>
         <Toolbar>
           <Link
-          variant='h6'
           href='/'
-          color='white'
-          style={{textDecoration: 'none', color:'black'}}
-          >VidCharm</Link>
+          ><a style={{textDecoration: 'none', color:'white'}}>VidCharm</a></Link>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />

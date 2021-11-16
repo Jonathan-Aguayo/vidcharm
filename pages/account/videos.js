@@ -15,7 +15,7 @@ export default function Videos(props)
 {
     const video = 
         {
-            title: 'Jonathan is cool',
+            title: 'video title',
             username: 'Jonathan Aguayo',
             views: 10,
             date: Date.now(),
@@ -37,7 +37,6 @@ export default function Videos(props)
             >
             <BottomNavigationAction label="Videos"  value='videos'/>
             <BottomNavigationAction label="Upload" value='upload' />
-            <BottomNavigationAction label="Playlists" value = 'playlists' />
             </BottomNavigation>
             <Grid container justifyContent='center' spacing={1} >
                 <Grid item xs={10}  m={6} lg={4} xl ={3} style={{margin:'10px'}} >

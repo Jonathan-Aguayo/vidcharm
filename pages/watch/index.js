@@ -1,5 +1,4 @@
-{/*}import {PrismaClient} from '@prisma/client'
-
+import {PrismaClient} from '@prisma/client'
 
 export default function index()
 {
@@ -7,6 +6,7 @@ export default function index()
         <p>he</p>
     )
 }
+
 const prisma = new PrismaClient();
 
 	export async function getStaticProps(){
