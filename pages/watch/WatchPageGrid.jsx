@@ -1,5 +1,4 @@
 import { Grid } from '@mui/material'
-import { maxHeight } from '@mui/system'
 import { useRouter } from 'next/router'
 import React from 'react'
 //import commentBox from'./.../components/commentBox.tsx'
@@ -145,7 +144,7 @@ comment: <span> {props.comment}</span>
       <div class="recommendationCSS" style={recommendationCSS}>
                   <div class= "recommendationcontainer"style={recommendationcontainer}>
                   <div class = "recVideos" style={{recVideos}}>
-                  <video style={{recVideos}} width='100%' height='275' controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/WIN_20210929_11_19_32_Pro (2).jpg' style={{ vid}}key={state.url}> 
+                  <video style={{recVideos}} width='100%' height='275' controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/pexels-neale-lasalle-631477.jpg' style={{ vid}}key={state.url}> 
 
                   <source src= {state.url}/>    </video>
                         </div>
@@ -159,7 +158,7 @@ comment: <span> {props.comment}</span>
 
                   <div class= "recommendationcontainer"style={recommendationcontainer}>
                   <div class = "recVideos">
-                  <video width='100%' height='275' controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/WIN_20210929_11_19_32_Pro (2).jpg'  key={state.url}> 
+                  <video width='100%' height='275' controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/pexels-neale-lasalle-631477.jpg'  key={state.url}> 
                 
                   <source src= {state.url}/>    </video>
                         </div>
@@ -173,7 +172,7 @@ comment: <span> {props.comment}</span>
 
                   <div class= "recommendationcontainer"style={recommendationcontainer}>
                   <div class = "recVideos">
-                  <video width='100%' height='275' controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/WIN_20210929_11_19_32_Pro (2).jpg' key={state.url}> 
+                  <video width='100%' height='275' controls poster='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/pexels-neale-lasalle-631477.jpg' key={state.url}> 
                
                   <source src= {state.url}/>    </video>
                         </div>
