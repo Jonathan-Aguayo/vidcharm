@@ -47,16 +47,16 @@ export default function Videos(props)
                         src='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/WIN_20210128_13_20_53_Pro.mp4'
                         style={{maxHeight:'350px'}}/>
                         <Grid container justifyContent='center'>
-                            <Grid item xs={3}>
-                                <Typography>{video.title}</Typography>
+                            <Grid item xs={4}>
+                                <Typography variant="h4">{video.title}</Typography>
                             </Grid>
                         </Grid>
                             <Grid container justifyContent='space-between'>
                             <Grid item xs={3}>
-                                <Typography>{video.username}</Typography>
+                                <Typography variant="caption text">{video.username}</Typography>
                             </Grid>
                             <Grid container item xs={3} justifyContent='flex-end'>
-                                <Typography>{video.views}</Typography>
+                                <Typography variant="caption text">{video.views}</Typography>
                             </Grid>
                         </Grid>
                     </Card>

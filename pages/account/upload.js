@@ -12,18 +12,17 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { TextField } from '@mui/material';
+import FormData from 'form-data'
 
 export default function AccountPage(props)
 {
     const [video, setVideo] = React.useState();
     const [poster, setPoster] = React.useState();
-    const [posterProgress , setPosterProgress] = React.useState(0);
-    const [videoProgress , setVideoProgress] = React.useState(0);
     const [navigationValue, setNavigationValue] = React.useState('upload');
     const router = useRouter()
     const [open, setOpen] = React.useState(false);
     const [title, setTitle] = React.useState('');
-
+    const [description, setDescription] = React.useState('');
 
     const handleClose = () => {
         setOpen(false);
@@ -44,25 +43,30 @@ export default function AccountPage(props)
 
     const updatePoster = (event) =>
     {
-        console.log(event.target.files[0].type)
         if(event.target.files[0].type.split('/')[0] ==='image')
         {
             setPoster(event.target.files[0])
         }
     }
     
-    const uploadFiles = (file, name, stateUpdater) => 
+    const uploadFiles = () => 
     {
-        const data = new FormData()
-        data.append('file', file);
-        data.append('title', name);
+        const data = new FormData(); 
+        data.append('video', video);
+        data.append('poster', poster);
+        data.append('title', title);
+        data.append('description', description)
         fetch('/api/videos', {
             method: 'POST',
-            body:data,
+            body: data,
         })
         .then(status =>
         {
             if(status.ok)
+            {
+                status.json().then(data => console.log(data))
+            }
+            else
             {
                 status.json().then(data => console.log(data))
             }
@@ -73,36 +77,15 @@ export default function AccountPage(props)
     {
         setTitle(event.target.value);
     }
+
+    const handleDescriptionUpdate = (event) =>
+    {
+        setDescription(event.target.value);
+    }
+
     return (
         
         <div>
-
-        <Backdrop
-        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={open}
-        onClick={handleClose}
-        >
-            <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-                <CircularProgress variant="determinate" value={videoProgress} />
-                <Box
-                    sx={{
-                    top: 0,
-                    left: 0,
-                    bottom: 0,
-                    right: 0,
-                    position: 'absolute',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    }}
-                >
-                    <Typography variant="caption" component="div" color="text.secondary">
-                    {`${videoProgress}%`}
-                    </Typography>
-                </Box>
-            </Box>
-        </Backdrop>
-
         <BottomNavigation
         showLabels
         value={navigationValue}
@@ -125,7 +108,6 @@ export default function AccountPage(props)
                     <CardHeader title='Video'/>
                     <CardMedia
                     component='video'
-                    height='250px'
                     src={video? URL.createObjectURL(video): ''}
                     controls
                     style={{objectFit:'contain', maxHeight:'350px'}}
@@ -133,7 +115,7 @@ export default function AccountPage(props)
                 
                     </CardMedia>
                     <CardActions>
-                        <input type='file' onChange={updateVideo} style={{color:'white'}}/>
+                        <input type='file' onChange={updateVideo} style={{color:'white'}} accept='.mp4'/>
                     </CardActions>
                 </Card>
  
@@ -142,14 +124,13 @@ export default function AccountPage(props)
                 <Card>
                     <CardHeader title='Thumbnail'/>
                     <CardMedia
-                    component='img'
-                    height='auto'                    
+                    component='img'                    
                     src={poster? URL.createObjectURL(poster): ''}
                     style={{objectFit:'contain', maxHeight:'350px'}}>
                         
                     </CardMedia>
                     <CardActions>
-                        <input type='file' onChange={updatePoster} style={{color:'white'}}/>
+                        <input type='file' onChange={updatePoster} style={{color:'white'}} accept='.jpg'/>
                     </CardActions>
                 </Card>
             </Grid>
@@ -169,7 +150,9 @@ export default function AccountPage(props)
                         <TextField
                         multiline
                         fullWidth
-                        rows={5}/>
+                        rows={5}
+                        value={description} 
+                        onChange ={handleDescriptionUpdate}/>
                     </Grid>
                 </Grid>
             </Grid>
@@ -178,7 +161,7 @@ export default function AccountPage(props)
                 style={{color:'black', borderColor:'black'}}
                 variant='outlined'
                 type='submit'
-                onClick = {() => {uploadFiles( video, `jonathan/${title}.mp4`, setVideoProgress);uploadFiles(poster, `jonathan/${title}-poster.jpg`, setPosterProgress); setOpen(true);}}
+                onClick = {() => {uploadFiles();setOpen(true);}}
                 disabled={poster? false:true}
                 >
                     Submit

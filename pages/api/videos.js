@@ -1,79 +1,109 @@
+import nextConnect from 'next-connect';
+import multer from 'multer';
 import { PrismaClient } from "@prisma/client"
-import S3 from "react-aws-s3"
-import multer from 'multer'
-const fs = require ('fs')
-const upload = multer({storage: multer.memoryStorage()})
+import { getSession } from "next-auth/client"
+import AWS from 'aws-sdk'
 
+
+let s3bucket = new AWS.S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: process.env.AWS_BUCKET_REGION
+});
+
+const storage = multer.memoryStorage();
+const upload = multer({storage:storage});
 const prisma = new PrismaClient()
-const s3config = {
-    bucketName: process.env.AWS_BUCKET_NAME,
-    region:process.env.AWS_BUCKET_REGION,
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-}
-const ReactS3Client = new S3(s3config);
-export default (req, res) => 
-{
-  if(req.method === 'POST')
-  {
-    const form = new formidable.IncomingForm();
-    form.uploadDir='./';
- 
-    form.parse(req, (err, fields, files) => 
-    {
-      
-      //upload video first
-      ReactS3Client.uploadFile(files, fields.title).then(data =>
-      {
-        prisma.video.create(
-        {
-          data:
-          {
-            title: fields.title,
-            views: 0,
-            like: 0,
-            dislike:0,
-            vidUrl:data.location,
-            datePosted: Date.now(),
 
-          }
-        }
-      ).
-      then(vid => 
-        {
-          res.status(200).json(vid);
-        })
-      })
-      //then create the table
-    })
-  }
-  else if(req.method === 'GET')
+
+const apiRoute =  nextConnect({
+  onError(error, req, res) {
+    res.status(501).json({ error: `Sorry something Happened! ${error.message}` });
+  },
+  onNoMatch(req, res) {
+    res.status(405).json({ error: `Method '${req.method}' Not Allowed` });
+  },
+});
+
+apiRoute.use(upload.fields([{name: 'video'}, {name:'poster'}]))
+
+apiRoute.post((req, res) => {
+  //Files
+  const session = getSession({req})
+  const files = req.files
+  const video = files.video[0].buffer
+  const poster = files.poster[0].buffer
+  const videoTitle = req.body.title
+
+  const id = prisma.session.findFirst({
+    select:{userId:true},
+    where:{accessToken: session.accessToken}
+  })
+  .then(userId =>
   {
-    const reqEmail = req.body.email;
     prisma.user.findFirst({
       where:
       {
-        email: reqEmail
+        id: userId.userId
       }
-    }).then( user => 
-    {
-      prisma.video.findMany({
-        where:
-        {
-          uId: user.id
-        }
-      })
-      .then(videos =>
-        {
-          res.json(videos)
-        })
     })
-  }
-}
+    .then(userRow =>
+    {
+      //upload files to s3
+      //only mp4 video and only jpg images
+
+      const videoParams = 
+      {
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: `${id.userId}/${videoTitle}.mp4`,
+        Body: video,
+      };
+      const posterParams = 
+      {
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: `${id.userId}/${videoTitle}-poster.jpg`,
+        Body: poster,
+      };
+      s3bucket.upload(videoParams).promise()
+      .then( videoData =>
+      {
+        s3bucket.upload(posterParams).promise()
+        .then(posterData=>
+        {
+          prisma.video.create({
+            data:
+            {
+              title: videoTitle,
+              dislike: 0,
+              like: 0,
+              views: 0,
+              vidUrl: videoData.Location,
+              posterUrl: posterData.Location,
+              author:userRow,
+            }
+          }).then(() => 
+          {
+            res.statusCode(200).json({message :'complete'})
+          })
+        })
+      }) 
+    })
+  })
+  .catch(err =>
+  {
+    res.json({message :'err'})
+  })
+  
+  //add to s3 bucket. REMEMBER TO ADD MP4 AT END OF VIDEO AND JPG TO END OF POSTER
+  
+
+});
+
+export default apiRoute;
 
 export const config = {
   api: {
-    bodyParser: false,
+    bodyParser: false, // Disallow body parsing, consume as stream
   },
-}
+};
 

@@ -47,7 +47,6 @@ model User {
   comments Comment[]
   videos Video[]
   playlists Playlist[]
-  channel Channel?
 }
 
 model Comment {
@@ -66,6 +65,7 @@ model Video{
   vId String @id @default(cuid())
   title String
   vidUrl String @unique
+  posterUrl String @unique @default("")
   datePosted DateTime @default(now())
   views Int
   like Int
@@ -73,8 +73,6 @@ model Video{
   comments Comment[]
   author User @relation(fields: [uId], references: [id ])
   uId String
-  source Channel @relation(fields: [chanId], references: [chanId])
-  chanId String
   playlists include[]
 }
 
@@ -85,7 +83,6 @@ model Playlist{
   createDate DateTime @default(now())
   author User @relation(fields: [uId], references: [id ])
   uId String
-  source Channel @relation(fields: [chanId], references: [chanId])
   chanId String
   videos include[]
 }
@@ -96,17 +93,6 @@ model include{
   vid Video @relation(fields: [vId], references: [vId])
   vId String 
 } 
-
-model Channel{
-  chanId String @id @default(cuid())
-  name String @unique
-  createDate DateTime @default(now())
-  profilePicUrl String
-  videos Video[]
-  playlists Playlist[]
-  auth User @relation(fields: [uId], references: [id ])
-  uId String
-}
 
 model VerificationRequest {
   id         String   @id @default(cuid())
