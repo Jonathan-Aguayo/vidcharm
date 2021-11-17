@@ -24,7 +24,7 @@ const Search = styled('div')(({ theme }) => ({
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
   marginRight: theme.spacing(2),
-  marginLeft: theme.spacing(1),
+  marginLeft: theme.spacing(2),
   width: '100%',
   [theme.breakpoints.up('sm')]: {
     width: 'auto',
@@ -157,20 +157,25 @@ export default function PrimarySearchAppBar(props) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" style={{backgroundColor:'#82959e'}}>
-        <Toolbar>
+        <Toolbar style={{justifyContent: 'space-between'}}>
           <Link
           href='/'
-          ><a style={{textDecoration: 'none', color:'white'}}>VidCharm</a></Link>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
-          <Box sx={{ flexGrow: 1 }} />
+          >
+            <a style={{textDecoration: 'none', color:'white', fontSize:'20px'}}>
+            VidCharm
+            </a>
+          </Link>
+          <Box sx={{ display: { xs: 'none', md: 'flex' } }} >
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ 'aria-label': 'search' }}
+              />
+            </Search>
+          </Box>
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <Typography
             variant='h6'
