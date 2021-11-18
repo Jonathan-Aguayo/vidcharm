@@ -12,7 +12,6 @@ import { useRouter } from 'next/router'
 import { getSession } from "next-auth/client"
 import { PrismaClient } from "@prisma/client"
 
-
 export default function Videos(props)
 {
     const videos = JSON.parse(props.videos);

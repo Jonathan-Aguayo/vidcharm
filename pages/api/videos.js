@@ -35,16 +35,11 @@ apiRoute.post((req, res) => {
   const poster = files.poster[0].buffer
   const videoTitle = req.body.title
   const description = req.body.description
-  const id = prisma.session.findFirst({
-    select:{userId:true},
-    where:{accessToken: session.accessToken}
-  })
-  .then(userId =>
-  {
+  const email = req.body.email
     prisma.user.findFirst({
       where:
       {
-        id: userId.userId
+        email:email
       }
     })
     .then(userRow =>
@@ -55,13 +50,13 @@ apiRoute.post((req, res) => {
       const videoParams = 
       {
         Bucket: process.env.AWS_BUCKET_NAME,
-        Key: `${userId.userId}/${videoTitle}.mp4`,
+        Key: `${userRow.id}/${videoTitle}.mp4`,
         Body: video,
       };
       const posterParams = 
       {
         Bucket: process.env.AWS_BUCKET_NAME,
-        Key: `${userId.userId}/${videoTitle}-poster.jpg`,
+        Key: `${userRow.id}/${videoTitle}-poster.jpg`,
         Body: poster,
       };
       s3bucket.upload(videoParams).promise()
@@ -89,7 +84,7 @@ apiRoute.post((req, res) => {
         })
       }) 
     })
-  })
+
   .catch(err =>
   {
     res.json({message :'err'})

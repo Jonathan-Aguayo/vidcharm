@@ -84,7 +84,6 @@ model Playlist{
   createDate DateTime @default(now())
   author User @relation(fields: [uId], references: [id ])
   uId String
-  chanId String
   videos include[]
 }
 

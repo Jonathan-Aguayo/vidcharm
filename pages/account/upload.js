@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { TextField } from '@mui/material';
 import FormData from 'form-data'
+import { useSession} from "next-auth/client"
 
 export default function AccountPage(props)
 {
@@ -23,6 +24,7 @@ export default function AccountPage(props)
     const [open, setOpen] = React.useState(false);
     const [title, setTitle] = React.useState('');
     const [description, setDescription] = React.useState('');
+    const [session, loading] = useSession()
 
     const handleClose = () => {
         setOpen(false);
@@ -56,6 +58,7 @@ export default function AccountPage(props)
         data.append('poster', poster);
         data.append('title', title);
         data.append('description', description)
+        data.append('email', session.user.email)
         fetch('/api/videos', {
             method: 'POST',
             body: data,

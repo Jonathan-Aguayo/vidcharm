@@ -19,7 +19,7 @@ import { useSession, signIn, signOut } from "next-auth/client"
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  backgroundColor: alpha(theme.palette.common.third, 0.15),
   '&:hover': {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
@@ -156,7 +156,7 @@ export default function PrimarySearchAppBar(props) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{backgroundColor:'#82959e'}}>
+      <AppBar position="static" color='primary'>
         <Toolbar style={{justifyContent: 'space-between'}}>
           <Link
           href='/'
