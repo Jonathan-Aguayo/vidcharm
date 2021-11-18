@@ -15,6 +15,7 @@ import { PrismaClient } from "@prisma/client"
 export default function Videos(props)
 {
     const videos = JSON.parse(props.videos);
+    console.log(videos)
     const [navigationValue, setNavigationValue] = React.useState('videos');
     const router = useRouter()
 

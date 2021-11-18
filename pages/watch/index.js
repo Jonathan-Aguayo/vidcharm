@@ -17,15 +17,39 @@ import TextField from '@mui/material/TextField';
 import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import Typography from '@mui/material/Typography';
-
+import Button from '@mui/material/Button'
 //We want to get the [video] part of the url and try to request the object from amazon s3 
 export default function Home(props) {
   const [session, loading] = useSession()
-
-  const commentBody = JSON.parse(props.comments)
+  const [newComment,setNewComment] = React.useState('')
+  const [commentBody, setCommentBody] = React.useState(JSON.parse(props.comments))
   const video = JSON.parse(props.video)
-  return (
 
+    async function submitComment()
+    {
+        const data ={
+            comment:newComment,
+            email: session.user.email,
+            videoId: video.vId,
+        }
+       const res = await fetch('/api/postComment',{
+                                    method:'POST',
+                                    body:JSON.stringify(data),
+                                    headers: {
+                                      'Content-Type': 'application/json',
+                                      'Accept':'*/*'
+                                    },
+                                })
+        if(res.ok)
+        {
+          const uploadedComment = await res.json()
+          const newCommentBody = commentBody.slice()
+          newCommentBody.push(uploadedComment)
+          setCommentBody(newCommentBody)
+        }
+    }
+
+  return (
     <>
       <title> VidCharm Watch Page</title>
       <Grid container spacing={2}>
@@ -43,18 +67,25 @@ export default function Home(props) {
         <Grid item xs={11.8}><Typography variant="subtitle"> Views {video.views} </Typography> </Grid>
         <Grid item xs={12}><Typography variant="subtitle2"> {video.description} </Typography> </Grid>
 <Grid item xs={12}>          <h1 style={{marginLeft:"20px", borderTop:"1px solid gray"}}>Comments</h1></Grid>
-<Grid container spacing={2}>
-          <Grid item>
-            <Avatar style={{marginLeft:"30px"}} alt={session?.user?.name} src={session?.user?.image} />
-          </Grid>
-          <Grid justifyContent="left" item xs zeroMinWidth>
-            <h4 style={{ margin: 0, textAlign: "left" }}></h4>
-            <TextField id="input-with-sx" label="Add a comment!" variant="outlined" multiline rows={3} />
-            <p style={{ textAlign: "left", color: "gray" }}>
-
-            </p>
-          </Grid>
-        </Grid> 
+        {
+            session?
+            <Grid container spacing={2}>
+                <Grid item>
+                    <Avatar style={{marginLeft:"30px"}} alt={session?.user?.name} src={session?.user?.image} />
+                </Grid>
+                <Grid item container justifyContent="left" item xs zeroMinWidth>
+                    <TextField 
+                    id="input-with-sx" 
+                    label="Add a comment!" 
+                    variant="standard" 
+                    multiline
+                    value={newComment}
+                    onChange={(event)=>{setNewComment(event.target.value);}}/>  
+                    <Button onClick={submitComment}>Post</Button>             
+                </Grid>
+            </Grid> 
+            :<p></p>
+        }
         <Grid container item xs={6} >
  
         {commentBody.length > 0 ?
