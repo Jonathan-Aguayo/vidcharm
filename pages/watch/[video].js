@@ -51,6 +51,7 @@ export default function Home(props) {
 
   const commentBody = JSON.parse(props.comments)
   console.log(commentBody)
+  //console.log(commentBody[0].source)
   return (
 
     <>
@@ -63,45 +64,39 @@ export default function Home(props) {
 
         </Grid>
         <Grid item xs={2} style={{}}>
-          <h1> Add a Comment </h1>
           <Grid container style={{}}>
             <Grid item xs={12} style={{}}>
               <h1>
 
-                <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-                  <Avatar alt={session?.user?.name} src={session?.user?.image} />
-                  <TextField id="input-with-sx" label={session?.user?.name} variant="outlined" multiline rows={3} />
-                </Box>
+
+
+      
 
               </h1>
             </Grid>
-            <Grid item xs={12} style={{}}
-              onSubmit={async (data, e) => {
-                try {
-                  await saveContact(data);
-                  setContacts([...contacts.data]);
-                  e.target.reset();
-                } catch (err) {
-                  console.log(err);
-                }
-              }}>
-            </Grid>
-            <Grid item xs={12} style={{}}>
-              {/* 
-     {comments.map((c, i: number) => (
-            <div className="mb-3" key={i}>
-              <commentBox contact={c} />
-            </div>
-          ))}
-*/}
-            </Grid>
           </Grid>
 
-        </Grid>
+        </Grid><Grid item xs={12}>  </Grid>
+        <Grid item xs={12}><Typography variant="h2"> {commentBody[0].source.title} </Typography> </Grid>
+        <Grid item xs={.2}><Typography variant="subtitle"></Typography> </Grid>
+        <Grid item xs={11.8}><Typography variant="subtitle"> Views {commentBody[0].source.views} </Typography> </Grid>
+        <Grid item xs={12}><Typography variant="subtitle2"> {commentBody[0].source.description} </Typography> </Grid>
+<Grid item xs={12}>          <h1 style={{marginLeft:"20px", borderTop:"1px solid gray"}}>Comments</h1></Grid>
+<Grid container spacing={2}>
+          <Grid item>
+            <Avatar style={{marginLeft:"30px"}} alt={session?.user?.name} src={session?.user?.image} />
+          </Grid>
+          <Grid justifyContent="left" item xs zeroMinWidth>
+            <h4 style={{ margin: 0, textAlign: "left" }}></h4>
+            <TextField id="input-with-sx" label="Add a comment!" variant="outlined" multiline rows={3} />
+            <p style={{ textAlign: "left", color: "gray" }}>
 
-        <Grid>
-          <h1 style={{marginLeft:"20px"}}>Comments</h1>
-          {commentBody.length > 0 ?
+            </p>
+          </Grid>
+        </Grid> 
+        <Grid container item xs={6} >
+ 
+        {commentBody.length > 0 ?
             commentBody.map((comment, index) =>
 
               <div>
@@ -154,11 +149,6 @@ export default function Home(props) {
           }
         </Grid>
 
-        <Grid container spacing={2} style={{}}>
-
-
-        </Grid>
-
       </Grid>
     </>
   );
@@ -197,7 +187,8 @@ export async function getServerSideProps(context) {
       vId: "1"
     },
 include:{
-	author:true
+	author:true,
+  source:true
 }
   })
   return {
