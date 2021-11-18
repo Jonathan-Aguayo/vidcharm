@@ -53,15 +53,13 @@ export default function Home(props) {
     <>
       <title> VidCharm Watch Page</title>
       <Grid container spacing={2}>
-        <Grid container direction={'row'} item xs={10} >
+        <Grid container direction={'row'} item xs={12} >
           <video width='100%' height='550' autoPlay controls poster={video.posterUrl} style={{ marginTop: '10px' }}>
             <source src={video.vidUrl} />
           </video>
 
         </Grid>
-        <Grid item xs={2} style={{}}>
- 
-        </Grid><Grid item xs={12}>  </Grid>
+
         <Grid item xs={12}><Typography variant="h2"> {video.title} </Typography> </Grid>
         <Grid item xs={.2}><Typography variant="subtitle"></Typography> </Grid>
         <Grid item xs={11.8}><Typography variant="subtitle"> Views {video.views} </Typography> </Grid>
