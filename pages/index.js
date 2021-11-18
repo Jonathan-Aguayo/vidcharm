@@ -31,4 +31,5 @@ export async function getServerSideProps(context) {
   //Need the session to get the email because thats how we are identifying the user
   const videos = await prisma.video.findMany({include:{author:true}});
   return {props:{ videos: JSON.stringify(videos)}}
+  prisma.$disconnect();
 }

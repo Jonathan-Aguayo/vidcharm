@@ -53,6 +53,7 @@ export default function AccountPage(props)
     
     const uploadFiles = () => 
     {
+        setOpen(true);
         const data = new FormData(); 
         data.append('video', video);
         data.append('poster', poster);
@@ -68,6 +69,7 @@ export default function AccountPage(props)
             if(status.ok)
             {
                 status.json().then(data => console.log(data))
+                setOpen(false)
             }
             else
             {
@@ -89,6 +91,14 @@ export default function AccountPage(props)
     return (
         
         <div>
+        <Button onClick={handleToggle}>Show backdrop</Button>
+            <Backdrop
+            sx={{zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={open}
+            onClick={handleClose}
+            >
+            <CircularProgress color="inherit"/>
+            </Backdrop>
         <BottomNavigation
         showLabels
         value={navigationValue}
