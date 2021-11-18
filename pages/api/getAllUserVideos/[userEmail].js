@@ -14,7 +14,7 @@ const apiRoute =  nextConnect({
 
 apiRoute.get((req, res) =>
 {
-    const userEmail = req.body.email;
+    const {userEmail} = req.query;
     prisma.user.findFirst({
         select:
         {

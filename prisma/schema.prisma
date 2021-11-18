@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+  url      = "mysql://admin:cmpe172vidcharm@rds-mysql-vidcharm.cww4xtjo4mzk.us-west-1.rds.amazonaws.com:3306/vidcharm?schema:public"
   }
 
 model Account {
@@ -74,6 +74,7 @@ model Video{
   author User @relation(fields: [uId], references: [id ])
   uId String
   playlists include[]
+  description String @default("")
 }
 
 model Playlist{

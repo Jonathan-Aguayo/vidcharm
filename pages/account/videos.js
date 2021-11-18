@@ -8,21 +8,16 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {BottomNavigation} from '@mui/material'
 import {BottomNavigationAction} from '@mui/material'
-import Link from 'next/link';
 import { useRouter } from 'next/router'
+import { getSession } from "next-auth/client"
+import { PrismaClient } from "@prisma/client"
+
 
 export default function Videos(props)
 {
-    const video = 
-        {
-            title: 'video title',
-            username: 'Jonathan Aguayo',
-            views: 10,
-            date: Date.now(),
-        }
+    const videos = JSON.parse(props.videos);
     const [navigationValue, setNavigationValue] = React.useState('videos');
     const router = useRouter()
-
 
     return(
         <div>        
@@ -38,35 +33,62 @@ export default function Videos(props)
             <BottomNavigationAction label="Videos"  value='videos'/>
             <BottomNavigationAction label="Upload" value='upload' />
             </BottomNavigation>
-            <Grid container justifyContent='center' spacing={1} >
-                <Grid item xs={10}  m={6} lg={4} xl ={3} style={{margin:'10px'}} >
-                    <Card>
-                        <CardMedia 
-                        component='video'
-                        controls
-                        src='https://vidcharm-bucket-1.s3.us-west-1.amazonaws.com/WIN_20210128_13_20_53_Pro.mp4'
-                        style={{maxHeight:'350px'}}/>
-                        <Grid container justifyContent='center'>
-                            <Grid item xs={4}>
-                                <Typography variant="h4">{video.title}</Typography>
-                            </Grid>
+            <Grid container justifyContent='center' >
+                {
+                    videos.length > 0?
+                    videos.map((vid, index) => 
+
+                    
+                        <Grid item xs={10}  m={6} lg={4} xl ={3} style={{margin:'10px'}} key={`video-${index}`}>
+                            <Card>
+                                <CardMedia 
+                                component='video'
+                                controls
+                                poster={vid.posterUrl}
+                                src= {vid.vidUrl}
+                                style={{maxHeight:'350px'}}/>
+                                <Grid container justifyContent='center'>
+                                    <Grid item>
+                                        <Typography variant="h4">{vid.title}</Typography>
+                                    </Grid>
+                                </Grid>
+                                <Grid container justifyContent='space-between'>
+                                    <Grid container item xs={3} justifyContent='flex-end'>
+                                        <Typography variant="caption text">{vid.views}</Typography>
+                                    </Grid>
+                                </Grid>
+                            </Card>
                         </Grid>
-                            <Grid container justifyContent='space-between'>
-                            <Grid item xs={3}>
-                                <Typography variant="caption text">{video.username}</Typography>
-                            </Grid>
-                            <Grid container item xs={3} justifyContent='flex-end'>
-                                <Typography variant="caption text">{video.views}</Typography>
-                            </Grid>
-                        </Grid>
-                    </Card>
-                </Grid>
+                    
+                    )
+                    :
+                    <p>No videos to show</p>
+                }
             </Grid>
         </div>
-
-
-        
-
-
     )
+}
+
+export async function getServerSideProps(context) {
+    const {req} = context
+    const prisma = new PrismaClient();
+    //Need the session to get the email because thats how we are identifying the user
+    const session = await getSession({req});
+    const userID = await prisma.user.findFirst({
+                    select:
+                    {
+                        id:true
+                    },
+                    where:
+                    {
+                        email:session.user.email
+                    },
+                })
+    const videos = await prisma.video.findMany({
+                    where:
+                    {
+                        uId: userID.id
+                    }
+                    })           
+    return {props:{ videos: JSON.stringify(videos)}}
 }
