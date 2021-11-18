@@ -16,8 +16,6 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
-import Typography from '@mui/material/Typography';
-import { typography } from '@mui/system'
 
   const prisma = new PrismaClient();
 //We want to get the [video] part of the url and try to request the object from amazon s3 
@@ -99,54 +97,38 @@ export default function Home(props) {
 
         </Grid>
 
-        <Grid>
-          <h1 style={{marginLeft:"20px"}}>Comments</h1>
+        <Grid item xs={10} style={{}}>
+          <h1>Comments</h1>
           {commentBody.length > 0 ?
             commentBody.map((comment, index) =>
 
               <div>
-                        <Grid container spacing={2}>
-          <Grid item>
-            <Avatar style={{marginLeft:"30px"}} alt={comment.author.name} src={comment.author.image} />
-          </Grid>
-          <Grid justifyContent="left" item xs zeroMinWidth>
-            <h4 style={{ margin: 0, textAlign: "left" }}>{comment.author.name}</h4>
-            <p style={{ textAlign: "left" }}>
-              {comment.body}{" "}
-            </p>
-            <p style={{ textAlign: "left", color: "gray" }}>
-            <ThumbUpAltOutlinedIcon></ThumbUpAltOutlinedIcon>
-          <ThumbDownOutlinedIcon></ThumbDownOutlinedIcon>
-            </p>
-          </Grid>
-        </Grid>
-{/*
-<Box sx={{ flexGrow: 1 }} style={{marginLeft:"15px"}}>
-      <Grid container spacing={2}>
-        <Grid container item xs={8} justifycontent="flex-end">
-          <Grid item>
-           <Avatar src={comment.author.image}> </Avatar>
-          </Grid>
-          <Grid>
-          <Typography style={{ fontSize:30, fontWeight:"bold"}}>
-            {comment.author.name} </Typography>
-            </Grid>
-        </Grid>
-        <Grid alignItems="flex-start" xs={4}>
+<Box style={{borderBottom: "1px solid black"}} sx={{ '& > :not(style)': { m: 1 } }}>
+<Grid container spacing={2}>
+<Grid xs={6}> </Grid>
+<p> {comment.author.name} </p>
+<Avatar src={comment.author.image}> </Avatar>
+<p> {comment.body} </p>
 
-        </Grid>
-        <Grid item xs={8}>
-          <div>
-          <ThumbUpAltOutlinedIcon></ThumbUpAltOutlinedIcon>
-          <ThumbDownOutlinedIcon></ThumbDownOutlinedIcon>
-          </div>
-        </Grid>
-        <Grid alignItems="flex-start" xs={4}>
-          <Typography style={{fontSize:30}}> {comment.body} </Typography>
-        </Grid>
-      </Grid>
+  <Grid item xs={6}><p> {comment.like} </p>  </Grid>
+<Grid xs={6}><ThumbUpAltOutlinedIcon /> 
+<ThumbDownOutlinedIcon/>
+</Grid>
+  <Grid item xs={6}>
+<p> {comment.dislike}</p>
+  </Grid>
+
+</Grid>
+
+<div style={{commentOrg}}> 
+
+
+
+</div>
+
+
     </Box>
-*/}
+                <p></p>
               </div>
 
             ) :
