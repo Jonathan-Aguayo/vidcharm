@@ -172,7 +172,6 @@ export async function getServerSideProps(context)
 {
     const { req } = context
     const prisma = new PrismaClient();
-  //Need the session to get the email because thats how we are identifying the user
     const video = await prisma.video.findFirst({
         where:{
             author:{

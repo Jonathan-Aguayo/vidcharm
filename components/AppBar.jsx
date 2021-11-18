@@ -14,7 +14,8 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import { Avatar } from '@mui/material';
 import Link from 'next/link';
 import { useSession, signIn, signOut } from "next-auth/client"
-
+import Button from '@mui/material/Button'
+import { useRouter } from 'next/router'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -59,8 +60,8 @@ export default function PrimarySearchAppBar(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [session, loading] = useSession()
-
-
+  const [key, setKey] = React.useState('')
+  const router = useRouter()
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -173,9 +174,13 @@ export default function PrimarySearchAppBar(props) {
               <StyledInputBase
                 placeholder="Search…"
                 inputProps={{ 'aria-label': 'search' }}
+                value={key}
+                onChange={(event)=>{setKey(event.target.value); console.log(key)}}
               />
             </Search>
+            <Button color='secondary' onClick={()=>router.push(`/search?key=${key}`)}> Search</Button>
           </Box>
+          
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <Typography
             variant='h6'
