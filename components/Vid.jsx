@@ -1,8 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import Avatar from '@mui/material/Avatar'
-
-
+import Link from 'next/link'
 export default function Vid(props)
 {
       return (
@@ -11,9 +10,9 @@ export default function Vid(props)
                   <div className="card-body row">
                         <Avatar className="col-auto" colSpan={1} style={{marginLeft:"5px"}} alt={props.author.name} src={props.author.image}></Avatar>
                         <h5 className="card-title col-sm">
-                              <a className="stretched-link" href={props.url}>
+                              <Link className="stretched-link" href={props.url}>
                                     <a> {props.title} </a> 
-                              </a>
+                              </Link>
                         </h5>
                         <p className="card-text">{props.channel}</p>
                   </div>
