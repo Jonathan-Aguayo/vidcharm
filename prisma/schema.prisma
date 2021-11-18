@@ -46,7 +46,6 @@ model User {
   sessions      Session[]
   comments Comment[]
   videos Video[]
-  playlists Playlist[]
 }
 
 model Comment {
@@ -73,27 +72,8 @@ model Video{
   comments Comment[]
   author User @relation(fields: [uId], references: [id ])
   uId String
-  playlists include[]
   description String @default("")
 }
-
-model Playlist{
-  pId String @id @default(cuid())
-  name String
-  listUrl String @unique
-  createDate DateTime @default(now())
-  author User @relation(fields: [uId], references: [id ])
-  uId String
-  chanId String
-  videos include[]
-}
-
-model include{
-  play Playlist @relation(fields:[pId], references:[pId])
-  pId String @id
-  vid Video @relation(fields: [vId], references: [vId])
-  vId String 
-} 
 
 model VerificationRequest {
   id         String   @id @default(cuid())
