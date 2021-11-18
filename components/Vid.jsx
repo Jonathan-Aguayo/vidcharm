@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-
+import Link from 'next/link'
 export default function Vid(props)
 {
       return (
@@ -8,9 +8,9 @@ export default function Vid(props)
                   <img className="card-image-top" src={props.image} alt={props.title} />
                   <div className="card-body">
                         <h5 className="card-title">
-                              <a className="stretched-link" href={props.url}>
+                              <Link className="stretched-link" href={props.url}>
                                     <a> {props.title} </a> 
-                              </a>
+                              </Link>
                               <p className="card-text">Channel: {props.channel}</p>
                         </h5>
                   </div>
