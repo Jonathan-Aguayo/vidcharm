@@ -1,18 +1,13 @@
-import { Grid } from '@mui/material'
-import { useSession } from 'next-auth/client';
-import Vid from '../components/Vid';
 import VidList from '../components/VidList';
-import { useRouter } from 'next/router'
 import React from 'react';
 import { PrismaClient } from "@prisma/client"
 import { Box, Heading, SimpleGrid } from "@chakra-ui/layout";
 import 'bootstrap/dist/css/bootstrap.css';
 import Link from 'next/link'
 import Avatar from '@mui/material/Avatar'
+import Grid from '@mui/material/Grid'
 
 export default function Home(props) {
-
-  const { data: session } = useSession()
 
   return ( 
     <div>
@@ -48,7 +43,8 @@ export default function Home(props) {
   )
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context) 
+{
   const {req} = context
   const prisma = new PrismaClient();
   //Need the session to get the email because thats how we are identifying the user
