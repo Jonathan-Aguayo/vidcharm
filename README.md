@@ -1,8 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## University
+SJSU
+## Course
+ Enterprise Software - CMPE172/ Fall 2021
+## Team Members
+Allan, Jonahthan, Kenneth
+## Project Introduction
+VidCharm is an online video streaming platform that revolves around video sharing and online socializing. Users are allowed to publish short videos online to express their creativity. Audiences are able to interact by loggining in, sharing, and expressing their opinion in the comment section of the video. At the home page users are able to browse videos published by the public and the user also has the ability to search for a specific video through the search bar. On the video page, there is a like button, dislike button, share button and comment section. User will also have a creator dashboard to view and upload videos with titles, description, and thumbnail.
+## Sample Screenshots
+![image](https://user-images.githubusercontent.com/59120947/144174681-b6ace397-0885-471f-aad6-e1c93dd2d87c.png)
+![image](https://user-images.githubusercontent.com/59120947/144174692-ac144efd-51b1-4bca-ae89-dbf6815509ca.png)
+ ## Running the Application
+ initialize prisma
+```bash
+npm i -d prisma
+npm i @prisma/client
+npx prisma init
 
-## Getting Started
+```
+Allow usage of deprecated npm functionality:
 
-First, run the development server:
+```bash
+export NODE_OPTIONS=--openssl-legacy-provider
+```
+
+development server can now start
+
 
 ```bash
 npm run dev
@@ -11,24 +33,18 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## System Diagram
+![image](https://user-images.githubusercontent.com/59120947/144177571-328bfad2-50d5-40c7-9d7d-cd336d21aa81.png)
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Class Diagram
+![image](https://user-images.githubusercontent.com/59120947/144177554-c61845e4-1555-4ce4-be86-b8271ddd6058.png)
+## Sequence Diagram
+![image](https://user-images.githubusercontent.com/59120947/144177625-04d58d3f-7dea-4193-ac9a-da411c9409d2.png)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Interaction Diagram
+![image](https://user-images.githubusercontent.com/59120947/144177649-36cff335-c3d8-4ce2-9fb2-97fa4a08d3d6.png)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Database Schema
+![image](https://user-images.githubusercontent.com/59120947/144177667-e94e5a20-405f-4863-9cbd-7c6f89207036.png)
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
