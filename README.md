@@ -33,4 +33,18 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## System Diagram
+![image](https://user-images.githubusercontent.com/59120947/144177571-328bfad2-50d5-40c7-9d7d-cd336d21aa81.png)
+
+## Class Diagram
+![image](https://user-images.githubusercontent.com/59120947/144177554-c61845e4-1555-4ce4-be86-b8271ddd6058.png)
+## Sequence Diagram
+![image](https://user-images.githubusercontent.com/59120947/144177625-04d58d3f-7dea-4193-ac9a-da411c9409d2.png)
+
+## Interaction Diagram
+![image](https://user-images.githubusercontent.com/59120947/144177649-36cff335-c3d8-4ce2-9fb2-97fa4a08d3d6.png)
+
+## Database Schema
+![image](https://user-images.githubusercontent.com/59120947/144177667-e94e5a20-405f-4863-9cbd-7c6f89207036.png)
+
 
