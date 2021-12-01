@@ -33,6 +33,18 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Running Dockerfile
+create docker container:
+```bash
+docker builld -t vidcharm:1.0 .
+```
+running the container:
+```bash
+docker run -p 3000:3000 vidcharm:1.0
+```
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
 ## System Diagram
 ![image](https://user-images.githubusercontent.com/59120947/144177571-328bfad2-50d5-40c7-9d7d-cd336d21aa81.png)
 
