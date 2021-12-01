@@ -1,7 +1,11 @@
-## SJSU
-## Course: Enterprise Software - CMPE172/ Fall 2021
-## Team Members: Allan,Jonahthan, Kenneth
+## University
+SJSU
+## Course
+ Enterprise Software - CMPE172/ Fall 2021
+## Team Members
+Allan,Jonahthan, Kenneth
 ## Project Introduction
+VidCharm is an online video streaming platform that revolves around video sharing and online socializing. Users are allowed to publish short videos online to express their creativity. Audiences are able to interact by loggining in, sharing, and expressing their opinion in the comment section of the video. At the home page users are able to browse videos published by the public and the user also has the ability to search for a specific video through the search bar. On the video page, there is a like button, dislike button, share button and comment section. User will also have a creator dashboard to view and upload videos with titles, description, and thumbnail.
 ## Sample Screenshots
 
 
