@@ -11,12 +11,26 @@ VidCharm is an online video streaming platform that revolves around video sharin
 ![image](https://user-images.githubusercontent.com/59120947/144174692-ac144efd-51b1-4bca-ae89-dbf6815509ca.png)
  ## Running the Application
  initialize prisma
- ''' bash
- npm i -d prisma
- '''
+```bash
+npm i -d prisma
+npm i @prisma/client
+npx prisma init
+
+```
+Allow usage of deprecated npm functionality:
+
+```bash
+export NODE_OPTIONS=--openssl-legacy-provider
+```
+
+development server can now start
 
 
-
+```bash
+npm run dev
+# or
+yarn dev
+```
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
