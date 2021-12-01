@@ -1,3 +1,12 @@
+## SJSU
+## Course: Enterprise Software - CMPE172/ Fall 2021
+## Team Members: Allan,Jonahthan, Kenneth
+## Project Introduction
+## Sample Screenshots
+
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
